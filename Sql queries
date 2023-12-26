@@ -1,0 +1,56 @@
+As a method of increasing future sales, the company has decided to give employee bonuses for exemplary performance in sales .Bonuses will be awarded to those employees who are responsible for the five highest order amounts.
+
+
+1-  Joining tables together in SQL to obtain Data for Analysis
+
+SELECT  LastName, FirstName, OrderId
+FROM Employees 
+INNER JOIN Orders
+ON Employees.EmployeeID = Orders.EmployeeID
+Order By LastName, FirstName
+
+ 2 - Joining all the tables
+
+  SELECT LastName, FirstName, Orders.OrderID, Products.ProductID, Quantity, Price
+  FROM Employees
+  INNER JOIN Orders
+  ON Employees.EmployeeID = Orders.EmployeeID
+  INNER JOIN OrderDetails
+  ON Order.OrderID = OrderDetails.OrderID
+  INNER JOIN Products
+  ON OrderDetails.ProductID = Products.ProductID
+  Order By LastName, FirstName
+
+3- Write SQL code to calculate and aggregate data 
+
+SELECT LastName, FirstName, Orders.OrderID, Products.ProductID, Quantity, Price, SUM(Quantity*Price) as SalesAmt
+FROM Employees
+INNER JOIN Orders
+ON Employees.EmployeeID = Orders.EmployeeID
+INNER JOIN OrderDetails
+ON Order.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+ON OrderDetails.ProductID = Products.ProductID
+Group By Orders.OrderID
+
+4 – Display Data in a format that can be used to inform a business     decision
+
+
+SELECT LastName, FirstName, Orders.OrderID, Products.ProductID, Quantity, Price, SUM(Quantity*Price) as SalesAmt
+FROM Employees
+INNER JOIN Orders
+ON Employees.EmployeeID = Orders.EmployeeID
+INNER JOIN OrderDetails
+ON Order.OrderID = OrderDetails.OrderID
+INNER JOIN Products
+ON OrderDetails.ProductID = Products.ProductID
+Group By Orders.OrderID
+Order By SalesAmt Desc
+Limit 5 
+
+                                                                                                     
+
+
+              
+                
+
